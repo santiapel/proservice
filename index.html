@@ -1,118 +1,270 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proservice S.A. | Filtración Tangencial y Servicios para Bodegas</title>
-  <!-- Tailwind CSS para diseño moderno -->
+  <title>Proservice S.A. | Filtración Tangencial y Servicios Enológicos</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome para iconos -->
+  
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- SweetAlert2 para notificaciones visuales -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-slate-50 text-gray-800 font-sans antialiased selection:bg-amber-500 selection:text-white">
 
   <!-- Navegación -->
-  <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+  <header class="bg-slate-900/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-md transition-all">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold tracking-wide text-amber-500">PROSERVICE S.A.</h1>
-      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+      <h1 class="text-2xl font-bold tracking-wide text-amber-500 flex items-center gap-2">
+        <i class="fas fa-wine-bottle"></i> PROSERVICE S.A.
+      </h1>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium">
         <a href="#inicio" class="hover:text-amber-400 transition">Inicio</a>
         <a href="#servicios" class="hover:text-amber-400 transition">Servicios</a>
-        <a href="#nosotros" class="hover:text-amber-400 transition">Nosotros</a>
+        <a href="#galeria" class="hover:text-amber-400 transition">Trabajos</a>
+        <a href="#ventajas" class="hover:text-amber-400 transition">Por qué elegirnos</a>
         <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
       </nav>
-      <a href="https://wa.me/5492616253687" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition">
-        <i class="fab fa-whatsapp text-base"></i> WhatsApp
+      <a href="https://wa.me/5492616253687?text=Hola,%20quisiera%20solicitar%20una%20cotización." target="_blank" 
+         class="bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all transform hover:scale-105 shadow-md">
+        <i class="fab fa-whatsapp text-lg"></i> Contactar
       </a>
     </div>
   </header>
 
-  <!-- Principal / Hero Section -->
-  <section id="inicio" class="bg-slate-800 text-white py-20 px-4 text-center">
-    <div class="max-w-3xl mx-auto">
-      <span class="text-amber-400 uppercase tracking-widest text-xs font-bold">Tecnología Avanzada para Bodegas</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold mt-2 mb-6 leading-tight">Filtración Tangencial y Mantenimiento Industrial</h2>
-      <p class="text-base md:text-lg text-gray-300 mb-8">
+  <!-- Hero Section con Animación -->
+  <section id="inicio" class="relative bg-slate-900 text-white py-24 px-4 overflow-hidden border-b border-amber-500/20">
+    <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+      <span class="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+        Servicios Enológicos Especializados
+      </span>
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+        Filtración Tangencial y Mantenimiento de Bodegas
+      </h2>
+      <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
         Sabemos todo el esfuerzo que hay detrás de cada producción de vino, por eso lo cuidamos como si fuera nuestro.
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
-        <a href="https://wa.me/5492616253687" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition shadow-lg">Solicitar Cotización</a>
-        <a href="mailto:funesfiltracion@gmail.com" class="border border-white hover:bg-white hover:text-slate-900 font-semibold px-6 py-3 rounded-lg transition">Enviar Email</a>
+        <a href="https://wa.me/5492616253687?text=Hola,%20quisiera%20solicitar%20una%20cotización." target="_blank" 
+           class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1">
+          Solicitar Cotización
+        </a>
+        <a href="#servicios" 
+           class="border border-slate-600 hover:border-white bg-slate-800/50 hover:bg-white hover:text-slate-900 font-semibold px-8 py-3.5 rounded-xl transition-all">
+          Ver Servicios
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Servicios principales -->
-  <section id="servicios" class="py-16 max-w-7xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Nuestros Servicios</h3>
-      <p class="text-gray-600 mt-2">Soluciones técnicas enológicas directamente en tu bodega</p>
+  <!-- Servicios con animaciones hover -->
+  <section id="servicios" class="py-20 max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h3 class="text-3xl font-extrabold text-slate-900">Nuestros Servicios</h3>
+      <p class="text-gray-600 mt-2 text-base">Soluciones técnicas y equipamiento especializado para la industria vitivinícola</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Servicio 1 -->
-      <div class="bg-white p-6 rounded-xl shadow border border-gray-100 flex flex-col items-start">
-        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-xl mb-4">
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
           <i class="fas fa-filter"></i>
         </div>
-        <h4 class="text-lg font-bold mb-2">Filtración Tangencial de Vinos</h4>
-        <p class="text-gray-600 text-sm">Servicio en bodega con tecnología avanzada (equipos Della Toffola) para garantizar la máxima transparencia y estabilidad de tus producciones.</p>
+        <h4 class="text-xl font-bold mb-3 text-slate-900">Filtración Tangencial</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Servicio móvil en bodega con tecnología de vanguardia (equipos Della Toffola). Garantizamos la máxima clarificación y brillo sin alterar las propiedades organolépticas del vino.
+        </p>
       </div>
 
-      <!-- Servicio 2 -->
-      <div class="bg-white p-6 rounded-xl shadow border border-gray-100 flex flex-col items-start">
-        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-xl mb-4">
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
           <i class="fas fa-snowflake"></i>
         </div>
-        <h4 class="text-lg font-bold mb-2">Automatizaciones de Frío</h4>
-        <p class="text-gray-600 text-sm">Instalación y calibración de paneles y equipos de frío para un control preciso de la temperatura en vasijas y tanques.</p>
+        <h4 class="text-xl font-bold mb-3 text-slate-900">Automatizaciones de Frío</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Instalación, mantenimiento y automatización de sistemas y equipos de frío para un control riguroso de temperaturas durante el proceso de fermentación y conservación.
+        </p>
       </div>
 
-      <!-- Servicio 3 -->
-      <div class="bg-white p-6 rounded-xl shadow border border-gray-100 flex flex-col items-start">
-        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-xl mb-4">
-          <i class="fas fa-wrench"></i>
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+          <i class="fas fa-gears"></i>
         </div>
-        <h4 class="text-lg font-bold mb-2">Service y Mantenimiento</h4>
-        <p class="text-gray-600 text-sm">Mantenimiento preventivo y correctivo especializado en Bombas Lobulares, a Pistón y demás equipamiento de movimiento de fluidos.</p>
+        <h4 class="text-xl font-bold mb-3 text-slate-900">Service de Bombas</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Mantenimiento preventivo y correctivo especializado en Bombas Lobulares, a Pistón y periféricos de trasvase dentro de plantas de producción.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Contacto e Información recopilada -->
-  <section id="contacto" class="bg-slate-100 py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-10">
-        <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Contacto Directo</h3>
-        <p class="text-gray-600 mt-1">Escríbenos para consultas, presupuestos o asistencia en bodega</p>
+  <!-- Galería de Trabajos / Imágenes -->
+  <section id="galeria" class="py-16 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h3 class="text-3xl font-extrabold text-slate-900">Galería de Trabajos</h3>
+        <p class="text-gray-600 mt-2">Tecnología e intervenciones directamente en planta</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 text-center">
-        <div class="bg-white p-6 rounded-lg shadow-sm">
-          <i class="fas fa-phone text-2xl text-amber-500 mb-2"></i>
-          <h5 class="font-bold text-sm">Teléfono / WhatsApp</h5>
-          <p class="text-gray-600 text-sm mt-1">0261 625-3687</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Imagen 1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition" data-aos="zoom-in">
+          <img src="img/equipo-della-toffola.jpg" alt="Equipo Della Toffola de Filtración Tangencial" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=Subir:+equipo-della-toffola.jpg'">
+          <div class="p-4">
+            <h5 class="font-bold text-slate-900">Equipamiento Della Toffola</h5>
+            <p class="text-xs text-gray-500 mt-1">Sistemas automatizados de filtración tangencial.</p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-sm">
-          <i class="fas fa-envelope text-2xl text-amber-500 mb-2"></i>
-          <h5 class="font-bold text-sm">Correo Electrónico</h5>
-          <p class="text-gray-600 text-sm mt-1">funesfiltracion@gmail.com</p>
+        <!-- Imagen 2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="100">
+          <img src="img/servicio-movil.jpg" alt="Unidad móvil Proservice en Bodega" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=Subir:+servicio-movil.jpg'">
+          <div class="p-4">
+            <h5 class="font-bold text-slate-900">Asistencia Móvil</h5>
+            <p class="text-xs text-gray-500 mt-1">Llegamos directo a las instalaciones de la bodega.</p>
+          </div>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-sm">
-          <i class="fab fa-instagram text-2xl text-amber-500 mb-2"></i>
-          <h5 class="font-bold text-sm">Instagram</h5>
-          <a href="https://www.instagram.com/proservice.s.a" target="_blank" class="text-amber-600 hover:underline text-sm font-semibold mt-1 inline-block">@proservice.s.a</a>
+        <!-- Imagen 3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="200">
+          <img src="img/mantenimiento-bodega.jpg" alt="Trabajo técnico y control en tanque" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=Subir:+mantenimiento-bodega.jpg'">
+          <div class="p-4">
+            <h5 class="font-bold text-slate-900">Controles Técnicos</h5>
+            <p class="text-xs text-gray-500 mt-1">Ajuste y puesta a punto de parámetros técnicos.</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Por qué elegirnos (Más Información) -->
+  <section id="ventajas" class="py-20 max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <span class="text-amber-600 font-bold text-sm tracking-widest uppercase">Garantía de Servicio</span>
+        <h3 class="text-3xl font-extrabold text-slate-900 mt-2 mb-6">¿Por qué confiar la producción a Proservice S.A.?</h3>
+        
+        <div class="space-y-4">
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold flex-shrink-0 mt-1">✓</div>
+            <div>
+              <h5 class="font-bold text-slate-900">Respuesta Rápida en Temporada</h5>
+              <p class="text-gray-600 text-sm">Entendemos los tiempos críticos de vendimia y elaboración.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold flex-shrink-0 mt-1">✓</div>
+            <div>
+              <h5 class="font-bold text-slate-900">Tecnología de Precisión</h5>
+              <p class="text-gray-600 text-sm">Operamos con maquinaria reconocida internacionalmente para minimizar mermas.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold flex-shrink-0 mt-1">✓</div>
+            <div>
+              <h5 class="font-bold text-slate-900">Mantenimiento Integral</h5>
+              <p class="text-gray-600 text-sm">Cuidamos el estado operativo de bombas y sistemas de frío para evitar paradas indeseadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl" data-aos="fade-left">
+        <h4 class="text-2xl font-bold mb-4 text-amber-400">¿Tienes dudas o necesitas un presupuesto especial?</h4>
+        <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+          Ponte en contacto directo a través de nuestras vías rápidas. Respondemos mensajes y coordinamos visitas a la brevedad.
+        </p>
+        <a href="https://wa.me/5492616253687" target="_blank" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
+          <i class="fab fa-whatsapp mr-2"></i> Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tarjetas de Contacto Interactivas -->
+  <section id="contacto" class="py-20 bg-slate-100 border-t border-gray-200">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h3 class="text-3xl font-extrabold text-slate-900">Contacto Directo</h3>
+        <p class="text-gray-600 mt-2">Estamos a tu disposición para consultas y cotizaciones</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Tarjeta WhatsApp (Click -> Abre chat) -->
+        <a href="https://wa.me/5492616253687?text=Hola,%20quisiera%20consultar%20por..." target="_blank" 
+           class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-2xl border border-gray-200/80 transition-all duration-300 transform hover:-translate-y-2 text-center group cursor-pointer block"
+           data-aos="zoom-in" data-aos-delay="100">
+          <div class="w-16 h-16 bg-amber-50 text-amber-500 group-hover:bg-green-500 group-hover:text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-4 transition-all duration-300">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h4 class="font-bold text-lg text-slate-900 group-hover:text-green-600 transition-colors">Teléfono / WhatsApp</h4>
+          <p class="text-gray-500 text-sm mt-2">0261 625-3687</p>
+          <span class="inline-block mt-4 text-xs font-semibold text-amber-600 group-hover:text-green-600 underline">Clic para chatear &rarr;</span>
+        </a>
+
+        <!-- Tarjeta Correo (Click -> Copia correo al portapapeles) -->
+        <div onclick="copiarEmail('funesfiltracion@gmail.com')" 
+             class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-2xl border border-gray-200/80 transition-all duration-300 transform hover:-translate-y-2 text-center group cursor-pointer"
+             data-aos="zoom-in" data-aos-delay="200">
+          <div class="w-16 h-16 bg-amber-50 text-amber-500 group-hover:bg-amber-500 group-hover:text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-4 transition-all duration-300">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h4 class="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors">Correo Electrónico</h4>
+          <p class="text-gray-500 text-sm mt-2">funesfiltracion@gmail.com</p>
+          <span class="inline-block mt-4 text-xs font-semibold text-amber-600 underline">Clic para copiar email &rarr;</span>
+        </div>
+
+        <!-- Tarjeta Instagram (Click -> Abre perfil) -->
+        <a href="https://www.instagram.com/proservice.s.a" target="_blank" 
+           class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-2xl border border-gray-200/80 transition-all duration-300 transform hover:-translate-y-2 text-center group cursor-pointer block"
+           data-aos="zoom-in" data-aos-delay="300">
+          <div class="w-16 h-16 bg-amber-50 text-amber-500 group-hover:bg-pink-600 group-hover:text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-4 transition-all duration-300">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <h4 class="font-bold text-lg text-slate-900 group-hover:text-pink-600 transition-colors">Instagram</h4>
+          <p class="text-gray-500 text-sm mt-2">@proservice.s.a</p>
+          <span class="inline-block mt-4 text-xs font-semibold text-amber-600 group-hover:text-pink-600 underline">Ver perfil &rarr;</span>
+        </a>
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-slate-900 text-gray-400 py-6 text-center text-xs">
+  <footer class="bg-slate-900 text-gray-400 py-8 text-center text-xs border-t border-slate-800">
     <p>&copy; 2026 Proservice S.A. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- Scripts para interactividad y animaciones -->
+  <script>
+    // Inicializar animaciones de desplazamiento
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // Función interactiva para copiar el email al hacer clic
+    function copiarEmail(email) {
+      navigator.clipboard.writeText(email).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Correo copiado!',
+          text: email + ' se ha copiado al portapapeles.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      });
+    }
+  </script>
 </body>
 </html>

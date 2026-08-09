@@ -8,7 +8,7 @@
   <!-- Favicon / Ícono de la pestaña del navegador -->
   <link rel="icon" type="image/png" href="https://i.ibb.co/SwMGWBQ2/favicon.png">
 
-  <!-- Etiquetas Open Graph (OG) para vista previa al compartir el enlace en WhatsApp/Redes -->
+  <!-- Etiquetas Open Graph (OG) -->
   <meta property="og:title" content="Pro Service S.A.">
   <meta property="og:description" content="Una empresa mendocina dedicada a la filtración tangencial de vinos en bodega">
   <meta property="og:image" content="OG image/og-image.png">
@@ -38,7 +38,6 @@
       position: relative;
     }
 
-    /* Capa desenfocada sobre la imagen de fondo */
     .bg-blur-fixed::before {
       content: "";
       position: absolute;
@@ -58,7 +57,7 @@
       z-index: 10;
     }
 
-    /* Animación de pulso sutil para elementos destacados */
+    /* Animación de pulso sutil */
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
       50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.4); }
@@ -76,6 +75,8 @@
       <h1 class="text-xl md:text-2xl font-black tracking-wider text-amber-500 flex items-center gap-2">
         <i class="fas fa-wine-glass-empty text-amber-400"></i> PROSERVICE <span class="text-xs border border-amber-500/50 px-2 py-0.5 rounded text-amber-300 font-mono">S.A.</span>
       </h1>
+      
+      <!-- Navegación Desktop -->
       <nav class="hidden lg:flex space-x-8 text-sm font-medium tracking-wide">
         <a href="#inicio" class="hover:text-amber-400 transition">Inicio</a>
         <a href="#tecnologia" class="hover:text-amber-400 transition">Tecnología</a>
@@ -83,14 +84,34 @@
         <a href="#proceso" class="hover:text-amber-400 transition">Proceso</a>
         <a href="#testimonios" class="hover:text-amber-400 transition">Reseñas</a>
         <a href="#calculadora" class="hover:text-amber-400 transition text-amber-400 font-bold">Calculadora</a>
+        <a href="#ubicacion" class="hover:text-amber-400 transition">Ubicación</a>
         <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
       </nav>
+
       <div class="flex items-center gap-3">
-        <a href="https://wa.me/5492616253687?text=Hola,%20quisiera%20consultar%20por%20disponibilidad%20de%20filtraci%C3%B3n%20tangencial." target="_blank" 
+        <!-- Botón WhatsApp Header (Llama al modal) -->
+        <button onclick="abrirModalWA('Consulta General')" 
            class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg shadow-emerald-900/30">
           <i class="fab fa-whatsapp text-lg"></i> <span class="hidden sm:inline">WhatsApp</span>
-        </a>
+        </button>
+
+        <!-- Botón Menú Hamburguesa para Móviles (QoL) -->
+        <button id="btnMenuMobile" class="lg:hidden text-amber-400 text-2xl focus:outline-none ml-2">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="navMobile" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col space-y-4 text-sm">
+      <a href="#inicio" class="mobile-link hover:text-amber-400 transition">Inicio</a>
+      <a href="#tecnologia" class="mobile-link hover:text-amber-400 transition">Tecnología</a>
+      <a href="#equipamiento" class="mobile-link hover:text-amber-400 transition">Equipos</a>
+      <a href="#proceso" class="mobile-link hover:text-amber-400 transition">Proceso</a>
+      <a href="#testimonios" class="mobile-link hover:text-amber-400 transition">Reseñas</a>
+      <a href="#calculadora" class="mobile-link hover:text-amber-400 text-amber-400 font-bold">Calculadora</a>
+      <a href="#ubicacion" class="mobile-link hover:text-amber-400 transition">Ubicación</a>
+      <a href="#contacto" class="mobile-link hover:text-amber-400 transition">Contacto</a>
     </div>
   </header>
 
@@ -107,10 +128,10 @@
         Somos una empresa que se dedica a la filtración tangencial de vinos, cuidando tu producción en todo el proceso de forma personalizada.
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
-        <a href="https://wa.me/5492616253687?text=Hola!%20Quisiera%20solicitar%20presupuesto%20y%20asesoramiento%20para%20mi%20bodega." target="_blank" 
+        <button onclick="abrirModalWA('Cotización desde Hero')" 
            class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-2xl transition-all transform hover:-translate-y-1 text-base flex items-center gap-3">
           <i class="fab fa-whatsapp text-xl"></i> Cotizar Servicio en Bodega 🍷
-        </a>
+        </button>
         <a href="#calculadora" 
            class="border border-white/30 hover:border-amber-400 bg-slate-900/60 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-2xl transition-all backdrop-blur-md text-base flex items-center gap-2">
           <i class="fas fa-calculator text-amber-400"></i> Estimar Rendimiento
@@ -169,7 +190,7 @@
           </div>
           <h4 class="text-2xl font-bold mb-3 text-white">Unidad Móvil Autónoma</h4>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Llegamos directo a tu establecimiento con equipamiento autónomo completo. Instalación rápida, segura y lista para operar bajo estrictos protocolos sanitarios.
+            Llegamos directo a tu establecimiento con equipamiento autónomo completo. Instalación rápida, segura y lista para operar bajo strictly protocolos sanitarios.
           </p>
         </div>
 
@@ -269,7 +290,7 @@
         <div class="bg-slate-900/85 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative" data-aos="fade-up" data-aos-delay="200">
           <div class="text-amber-500/30 text-5xl font-black absolute top-4 right-6">02</div>
           <h4 class="text-xl font-bold text-white mb-3 mt-4">Arribo y Montaje</h4>
-          <p class="text-gray-300 text-sm leading-relaxed">Desplazamos nuestra unidad móvil a planta, realizando conexiones sanitarias estériles bajo estrictas normas de inocuidad.</p>
+          <p class="text-gray-300 text-sm leading-relaxed">Desplazamos nuestra unidad móvil a planta, realizando conexiones sanitarias estériles bajo strictly normas de inocuidad.</p>
         </div>
 
         <!-- Paso 3 -->
@@ -304,11 +325,11 @@
             <i class="fas fa-quote-left"></i>
           </div>
           <p class="text-gray-200 text-base italic leading-relaxed mb-6">
-            “Mi experiencia con Adry y Carlos fue que ofrecieron muy buen servicio, excelente asistencia permanente. Muy buen servicio a Finca Don Carlos Saludos.”
+            “Mi experiencia con Adry y Carlos fue que offered muy buen servicio, excelente asistencia permanente. Muy buen servicio a Finca Don Carlos Saludos.”
           </p>
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center font-bold text-amber-400 border border-amber-500/40">
-              j
+              J
             </div>
             <div>
               <h5 class="font-bold text-white">Jesus C.</h5>
@@ -389,11 +410,71 @@
               <div class="text-gray-400 text-xs">Recuperación Volumétrica Estimada:</div>
               <div id="resRecuperacion" class="text-2xl font-bold text-amber-400 mt-1">99.2% Líquido Útil</div>
             </div>
-            <a href="https://wa.me/5492616253687?text=Hola,%20hice%20una%20simulaci%C3%B3n%20en%20su%20web%20para%20filtrar%20mi%20lote." target="_blank" 
+            
+            <button onclick="solicitarDesdeCalculadora()" 
                class="mt-6 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-6 rounded-xl transition shadow-lg text-sm block">
               Coordinar con este volumen &rarr;
-            </a>
+            </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: UBICACIÓN & GOOGLE MAPS -->
+  <section id="ubicacion" class="bg-slate-950 py-24 px-4 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Nuestra Base de Operaciones</span>
+        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Ubicación & Cobertura Regional</h3>
+        <p class="text-gray-400 mt-3 text-base max-w-2xl mx-auto">
+          Ubicados estratégicamente en la provincia de Mendoza para prestar servicios móviles inmediatos a todas las bodegas de la región.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+        <!-- Tarjeta de Info de Ubicación -->
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between" data-aos="fade-right">
+          <div>
+            <div class="flex items-center gap-3 text-amber-400 mb-6">
+              <i class="fas fa-map-location-dot text-3xl"></i>
+              <h4 class="text-xl font-bold text-white">Sede Mendoza</h4>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              Brindamos atención técnica in-situ desplazando nuestras unidades autónomas a Luján de Cuyo, Maipú, Valle de Uco, San Rafael y zonas productivas aledañas.
+            </p>
+
+            <ul class="space-y-4 text-sm text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-emerald-400"></i> Servicio Móvil en Bodega
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-emerald-400"></i> Asistencia Técnica 24/7
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-emerald-400"></i> Traslado Equipos Certificados
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://maps.app.goo.gl/J8ooxufsrjkXUfUb7" target="_blank" 
+             class="mt-8 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold py-3.5 px-6 rounded-xl border border-amber-500/30 text-center transition flex items-center justify-center gap-2 text-sm">
+            <i class="fas fa-arrow-up-right-from-square"></i> Abrir en Google Maps
+          </a>
+        </div>
+
+        <!-- Mapa Embebido de Google -->
+        <div class="lg:col-span-2 rounded-3xl overflow-hidden border border-slate-800 min-h-[350px] shadow-2xl" data-aos="fade-left">
+          <iframe 
+            title="Google Maps Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.665406085186!2d-68.85000000000002!3d-32.93000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU1JzE4LjAiUyA2OMKwNTEnMDAuMCJX!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" 
+            width="100%" 
+            height="100%" 
+            style="border:0; min-height: 380px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
@@ -410,8 +491,8 @@
 
       <div class="grid md:grid-cols-3 gap-8">
         <!-- WhatsApp Card -->
-        <a href="https://wa.me/5492616253687?text=Hola,%20quisiera%20solicitar%20presupuesto%20para%20mi%20bodega." target="_blank" 
-           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 transition-all duration-300 transform hover:-translate-y-2 text-center group block"
+        <div onclick="abrirModalWA('Sección Contacto')" 
+           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 transition-all duration-300 transform hover:-translate-y-2 text-center group block cursor-pointer"
            data-aos="zoom-in" data-aos-delay="100">
           <div class="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 transition-all duration-300">
             <i class="fab fa-whatsapp"></i>
@@ -419,7 +500,7 @@
           <h4 class="font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">WhatsApp Directo</h4>
           <p class="text-gray-300 text-sm mt-2 font-mono">0261 625-3687</p>
           <span class="inline-block mt-6 text-xs font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 py-2 px-4 rounded-xl">Iniciar Chat &rarr;</span>
-        </a>
+        </div>
 
         <!-- Correo Electrónico Card -->
         <div onclick="copiarEmail('funesfiltracion@gmail.com')" 
@@ -462,6 +543,72 @@
     </div>
   </footer>
 
+  <!-- ELEMENTOS FLOTANTES QoL (Volver arriba y WhatsApp Flotante) -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <!-- Botón Volver Arriba -->
+    <button id="btnScrollTop" onclick="scrollToTop()" class="hidden bg-slate-800 hover:bg-slate-700 text-amber-400 p-3.5 rounded-full shadow-2xl border border-slate-700 transition transform hover:scale-110">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Botón Flotante WhatsApp -->
+    <button onclick="abrirModalWA('Botón Flotante')" class="bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 flex items-center justify-center text-2xl shadow-emerald-950/50">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
+
+  <!-- MODAL / POP-UP PREGUNTAS WHATSAPP CON SKIP (QoL) -->
+  <div id="modalWhatsApp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-opacity">
+    <div class="bg-slate-900 border border-slate-700 text-white w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-2xl relative">
+      <!-- Botón cerrar modal -->
+      <button onclick="cerrarModalWA()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+        <i class="fas fa-xmark"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-3 border border-emerald-500/30">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3 class="text-2xl font-bold">Asesoramiento Personalizado</h3>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Responde brevemente para darte una respuesta exacta o salta directamente a WhatsApp.</p>
+      </div>
+
+      <form id="formWhatsApp" onsubmit="enviarMensajeWA(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Nombre / Bodega</label>
+          <input type="text" id="waNombre" placeholder="Ej: Juan Pérez / Bodega Don Carlos" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Tipo de Vino</label>
+          <input type="text" id="waTipoVino" placeholder="Ej: Tinto Malbec, Blanco, Rosado..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Volumen aprox. (Lts)</label>
+            <input type="text" id="waVolumen" placeholder="Ej: 20.000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Fecha Estimada</label>
+            <input type="text" id="waFecha" placeholder="Ej: Próxima semana / Urgente" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <!-- Botones de Acción: Enviar Formulario o Botón SKIP -->
+        <div class="pt-4 flex flex-col sm:flex-row gap-3">
+          <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp"></i> Enviar Datos e Iniciar
+          </button>
+          
+          <!-- Botón SKIP / SALTAR -->
+          <button type="button" onclick="saltarAWA()" class="bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold py-3 px-5 rounded-xl transition text-sm">
+            Skip / Omitir &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     // Inicializar AOS
     AOS.init({
@@ -469,18 +616,97 @@
       once: true
     });
 
+    // QoL: Menú hamburguesa desplegable
+    const btnMenuMobile = document.getElementById('btnMenuMobile');
+    const navMobile = document.getElementById('navMobile');
+
+    btnMenuMobile.addEventListener('click', () => {
+      navMobile.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.add('hidden');
+      });
+    });
+
+    // QoL: Botón Volver Arriba
+    const btnScrollTop = document.getElementById('btnScrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btnScrollTop.classList.remove('hidden');
+      } else {
+        btnScrollTop.classList.add('hidden');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // LÓGICA DEL POP-UP MODAL DE WHATSAPP
+    const modalWhatsApp = document.getElementById('modalWhatsApp');
+    const numeroWhatsApp = "5492616253687";
+    let origenWhatsApp = "Web";
+
+    function abrirModalWA(origen = '') {
+      origenWhatsApp = origen;
+      modalWhatsApp.classList.remove('hidden');
+    }
+
+    function cerrarModalWA() {
+      modalWhatsApp.classList.add('hidden');
+    }
+
+    // Acción para presionar el botón SKIP
+    function saltarAWA() {
+      cerrarModalWA();
+      const msg = encodeURIComponent(`Hola! Quisiera realizar una consulta sobre el servicio de filtración tangencial para mi bodega.`);
+      window.open(`https://wa.me/${numeroWhatsApp}?text=${msg}`, '_blank');
+    }
+
+    // Acción al enviar el formulario del Modal
+    function enviarMensajeWA(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('waNombre').value.trim();
+      const tipoVino = document.getElementById('waTipoVino').value.trim();
+      const volumen = document.getElementById('waVolumen').value.trim();
+      const fecha = document.getElementById('waFecha').value.trim();
+
+      let texto = `Hola! Quisiera consultar disponibilidad de servicio de filtración tangencial.`;
+      
+      if (nombre) texto += `\n\n📌 *Nombre / Bodega:* ${nombre}`;
+      if (tipoVino) texto += `\n🍷 *Tipo de Vino:* ${tipoVino}`;
+      if (volumen) texto += `\n📊 *Volumen aprox.:* ${volumen} Lts`;
+      if (fecha) texto += `\n📅 *Fecha estimada:* ${fecha}`;
+
+      cerrarModalWA();
+      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    }
+
+    // Vinculación directa desde la Calculadora al Pop-Up
+    function solicitarDesdeCalculadora() {
+      const litros = document.getElementById('inputLitros').value;
+      const selectTipo = document.getElementById('selectTipo');
+      const tipoTexto = selectTipo.options[selectTipo.selectedIndex].text;
+      
+      document.getElementById('waVolumen').value = litros;
+      document.getElementById('waTipoVino').value = tipoTexto;
+      
+      abrirModalWA('Calculadora');
+    }
+
     // Simulador interactivo en tiempo real
     function calcularFiltracion() {
       const litros = parseFloat(document.getElementById('inputLitros').value) || 0;
       const factorTipo = parseFloat(document.getElementById('selectTipo').value) || 1.0;
       
-      // Cálculo estimado de horas (aprox 3500 lts por hora base)
       const horasBase = (litros / 3500) * factorTipo;
       const horasRedondeadas = Math.round(horasBase * 10) / 10;
       
       document.getElementById('resTiempo').innerText = `~ ${horasRedondeadas} Horas`;
       
-      // Recuperación volumétrica según pureza
       let recuperacion = "99.4% Líquido Útil";
       if (factorTipo > 1.3) {
         recuperacion = "98.9% Líquido Útil";

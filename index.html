@@ -3,33 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filtración Tangencial en Mendoza de Alta Precisión en Bodegas Proservice S.A.</title>
+  <title>Filtración Tangencial en Mendoza | Bodegas Proservice S.A.</title>
 
   <!-- Favicon / Ícono de la pestaña del navegador -->
   <link rel="icon" type="image/png" href="https://i.ibb.co/SwMGWBQ2/favicon.png">
 
   <!-- Etiquetas Open Graph (OG) -->
-  <meta property="og:title" content="Pro Service S.A.">
-  <meta property="og:description" content="Una empresa mendocina dedicada a la filtración tangencial de vinos en bodega">
-  <meta property="og:image" content="OG image/og-image.png">
+  <meta property="og:title" content="Proservice S.A. | Filtración Tangencial de Vinos en Bodega">
+  <meta property="og:description" content="Servicio móvil especializado de filtración tangencial con membranas cerámicas Della Toffola en Mendoza. Cuidamos la esencia de tu vino.">
+  <meta property="og:image" content="https://i.ibb.co/mCbmv55S/697134065-122101679523309708-3328251210397430394-n.jpg">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://santapel.github.io/proservice/">
 
-  <!-- Tailwind CSS -->
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            wine: {
+              50: '#fdf2f4',
+              100: '#fbe5e8',
+              500: '#a31d38',
+              700: '#731225',
+              800: '#520d1a',
+              900: '#38060f',
+              950: '#200207',
+            },
+            gold: {
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <!-- Chart.js for Enological Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
-    /* Estilos para el efecto Parallax Desenfocado de Fondo */
+    /* Estilos para el fondo fijo */
     .bg-blur-fixed {
       background-attachment: fixed;
       background-position: center;
@@ -47,8 +76,8 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      filter: blur(14px) brightness(0.5);
-      transform: scale(1.05);
+      filter: blur(16px) brightness(0.45);
+      transform: scale(1.08);
       z-index: 0;
     }
 
@@ -57,104 +86,229 @@
       z-index: 10;
     }
 
-    /* Animación de pulso sutil */
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
-      50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.4); }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
-    .glow-card {
-      animation: pulseGlow 4s infinite ease-in-out;
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ca8a04;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-gray-100 font-sans antialiased selection:bg-amber-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden">
 
-  <!-- Navegación -->
-  <header class="bg-slate-950/90 backdrop-blur-md text-white sticky top-0 z-40 border-b border-slate-800/80 shadow-2xl transition-all">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl md:text-2xl font-black tracking-wider text-amber-500 flex items-center gap-2">
-        <i class="fas fa-wine-glass-empty text-amber-400"></i> PROSERVICE <span class="text-xs border border-amber-500/50 px-2 py-0.5 rounded text-amber-300 font-mono">S.A.</span>
-      </h1>
+  <!-- Barra Superior Informativa / Vendimia 24/7 -->
+  <div class="bg-gradient-to-r from-wine-900 via-slate-900 to-wine-900 text-amber-300 border-b border-amber-500/20 text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+    <span class="inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/40 text-[10px] font-bold tracking-wider uppercase">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Operativo Mendoza
+    </span>
+    <span>Unidades Móviles In-Situ Disponibles para Bodegas en Luján de Cuyo, Valle de Uco, Maipú y San Rafael</span>
+    <a href="#contacto" class="underline hover:text-white ml-2 font-bold hidden md:inline">Consultar Fechas &rarr;</a>
+  </div>
+
+  <!-- Navegación Principal -->
+  <header class="bg-slate-950/90 backdrop-blur-xl text-white sticky top-0 z-40 border-b border-slate-800/80 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+      <!-- Logo Marca -->
+      <a href="#inicio" class="group flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-wine-700 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
+          <i class="fas fa-wine-glass-empty text-slate-950"></i>
+        </div>
+        <div>
+          <span class="text-lg md:text-xl font-black tracking-wider text-amber-400 flex items-center gap-1.5">
+            PROSERVICE <span class="text-[10px] bg-amber-500/10 border border-amber-500/40 px-1.5 py-0.5 rounded text-amber-300 font-mono tracking-normal">S.A.</span>
+          </span>
+          <span class="block text-[10px] text-gray-400 font-medium tracking-widest uppercase">Filtración Tangencial Mendoza</span>
+        </div>
+      </a>
       
       <!-- Navegación Desktop -->
-      <nav class="hidden lg:flex space-x-8 text-sm font-medium tracking-wide">
-        <a href="#inicio" class="hover:text-amber-400 transition">Inicio</a>
-        <a href="#tecnologia" class="hover:text-amber-400 transition">Tecnología</a>
-        <a href="#equipamiento" class="hover:text-amber-400 transition">Equipos</a>
-        <a href="#proceso" class="hover:text-amber-400 transition">Proceso</a>
-        <a href="#testimonios" class="hover:text-amber-400 transition">Reseñas</a>
-        <a href="#calculadora" class="hover:text-amber-400 transition text-amber-400 font-bold">Calculadora</a>
-        <a href="#ubicacion" class="hover:text-amber-400 transition">Ubicación</a>
-        <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
+      <nav class="hidden xl:flex space-x-7 text-xs font-semibold uppercase tracking-wider text-gray-300">
+        <a href="#inicio" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Inicio</a>
+        <a href="#comparativa" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Ventajas</a>
+        <a href="#tecnologia" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Tecnología</a>
+        <a href="#equipamiento" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Equipos</a>
+        <a href="#calculadora" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400 text-amber-400 font-bold flex items-center gap-1">
+          <i class="fas fa-calculator text-amber-400"></i> Simulador
+        </a>
+        <a href="#proceso" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Proceso</a>
+        <a href="#testimonios" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Reseñas</a>
+        <a href="#ubicacion" class="hover:text-amber-400 py-1 border-b-2 border-transparent hover:border-amber-400">Ubicación</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <!-- Botón WhatsApp Header (Llama al modal) -->
-        <button onclick="abrirModalWA('Consulta General')" 
-           class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg shadow-emerald-900/30">
-          <i class="fab fa-whatsapp text-lg"></i> <span class="hidden sm:inline">WhatsApp</span>
+        <!-- Botón Cotizar Directo -->
+        <button onclick="abrirModalWA('Cotización Header')" 
+           class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-4 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-2 shadow-lg shadow-emerald-950/50 uppercase tracking-wider">
+          <i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">Cotizar por WhatsApp</span>
         </button>
 
-        <!-- Botón Menú Hamburguesa para Móviles (QoL) -->
-        <button id="btnMenuMobile" class="lg:hidden text-amber-400 text-2xl focus:outline-none ml-2">
+        <!-- Botón Menú Hamburguesa para Móviles -->
+        <button id="btnMenuMobile" aria-label="Abrir menú" class="xl:hidden text-amber-400 p-2 rounded-lg bg-slate-900 border border-slate-800 text-xl focus:outline-none hover:bg-slate-800">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
 
     <!-- Menú Desplegable Móvil -->
-    <div id="navMobile" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col space-y-4 text-sm">
-      <a href="#inicio" class="mobile-link hover:text-amber-400 transition">Inicio</a>
-      <a href="#tecnologia" class="mobile-link hover:text-amber-400 transition">Tecnología</a>
-      <a href="#equipamiento" class="mobile-link hover:text-amber-400 transition">Equipos</a>
-      <a href="#proceso" class="mobile-link hover:text-amber-400 transition">Proceso</a>
-      <a href="#testimonios" class="mobile-link hover:text-amber-400 transition">Reseñas</a>
-      <a href="#calculadora" class="mobile-link hover:text-amber-400 text-amber-400 font-bold">Calculadora</a>
-      <a href="#ubicacion" class="mobile-link hover:text-amber-400 transition">Ubicación</a>
-      <a href="#contacto" class="mobile-link hover:text-amber-400 transition">Contacto</a>
+    <div id="navMobile" class="hidden xl:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-5 flex flex-col space-y-4 text-sm font-medium">
+      <a href="#inicio" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-house text-xs text-amber-500"></i> Inicio</a>
+      <a href="#comparativa" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-scale-balanced text-xs text-amber-500"></i> Ventajas vs Tierras</a>
+      <a href="#tecnologia" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-microchip text-xs text-amber-500"></i> Tecnología Membranas</a>
+      <a href="#equipamiento" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-gears text-xs text-amber-500"></i> Della Toffola OMNIA</a>
+      <a href="#calculadora" class="mobile-link text-amber-400 font-bold flex items-center gap-2"><i class="fas fa-calculator text-xs"></i> Simulador Enológico</a>
+      <a href="#proceso" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-list-check text-xs text-amber-500"></i> Proceso In-Situ</a>
+      <a href="#testimonios" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-star text-xs text-amber-500"></i> Reseñas de Bodegas</a>
+      <a href="#ubicacion" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-map-pin text-xs text-amber-500"></i> Base Luján de Cuyo</a>
+      <a href="#contacto" class="mobile-link hover:text-amber-400 flex items-center gap-2"><i class="fas fa-envelope text-xs text-amber-500"></i> Contacto Técnico</a>
     </div>
   </header>
 
   <!-- SECCIÓN 1: INICIO (Hero) -->
-  <section id="inicio" class="bg-blur-fixed min-h-[90vh] flex items-center py-20 px-4 overflow-hidden" style="background-image: url('https://i.ibb.co/1pJZQDQ/Fotito-en-la-carretera.jpg');">
-    <div class="max-w-5xl mx-auto text-center content-over-blur" data-aos="fade-up" data-aos-duration="1200">
-      <div class="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 backdrop-blur-md px-5 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest text-amber-400 mb-8 shadow-xl">
-        <i class="fas fa-award"></i> Excelencia Enológica &bull; Filtración Tangencial Móvil
+  <section id="inicio" class="bg-blur-fixed min-h-[92vh] flex items-center py-24 px-4 overflow-hidden" style="background-image: url('https://i.ibb.co/1pJZQDQ/Fotito-en-la-carretera.jpg');">
+    <div class="max-w-6xl mx-auto text-center content-over-blur">
+      <div class="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 backdrop-blur-md px-5 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest text-amber-400 mb-8 shadow-2xl">
+        <i class="fas fa-award text-amber-400"></i> Excelencia Enológica &bull; Servicio Móvil de Filtración Tangencial
       </div>
-      <h2 class="text-4xl md:text-7xl font-black mb-6 leading-tight tracking-tight drop-shadow-2xl text-white">
-        “Cuidamos la esencia de tu trabajo en cada litro”
-      </h2>
-      <p class="text-lg md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 font-light leading-relaxed drop-shadow">
-        Somos una empresa que se dedica a la filtración tangencial de vinos, cuidando tu producción en todo el proceso de forma personalizada.
+      
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight tracking-tight drop-shadow-2xl text-white">
+        “Cuidamos la esencia de tu trabajo en <span class="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">cada litro</span>”
+      </h1>
+      
+      <p class="text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto mb-10 font-light leading-relaxed drop-shadow-md">
+        Servicios móviles in-situ en Mendoza. Preservamos las características organolépticas, color y aromas de tu vino mediante filtración tangencial con membranas cerámicas de última generación.
       </p>
+
       <div class="flex justify-center gap-4 flex-wrap">
-        <button onclick="abrirModalWA('Cotización desde Hero')" 
-           class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-2xl transition-all transform hover:-translate-y-1 text-base flex items-center gap-3">
+        <button onclick="abrirModalWA('Hero Main CTA')" 
+           class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-2xl text-base flex items-center gap-3 tracking-wide">
           <i class="fab fa-whatsapp text-xl"></i> Cotizar Servicio en Bodega 🍷
         </button>
         <a href="#calculadora" 
-           class="border border-white/30 hover:border-amber-400 bg-slate-900/60 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-2xl transition-all backdrop-blur-md text-base flex items-center gap-2">
-          <i class="fas fa-calculator text-amber-400"></i> Estimar Rendimiento
+           class="border border-white/30 hover:border-amber-400 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-2xl backdrop-blur-md text-base flex items-center gap-2 shadow-xl">
+          <i class="fas fa-sliders text-amber-400"></i> Probar Simulador Enológico
         </a>
       </div>
 
-      <!-- Métricas de confianza rápida -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-white/10 text-center">
-        <div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/15 text-center">
+        <div class="p-4 rounded-2xl bg-slate-950/60 backdrop-blur-md border border-white/10">
           <div class="text-3xl md:text-4xl font-black text-amber-400">+15 Millones</div>
-          <div class="text-xs md:text-sm text-gray-300 mt-1 uppercase tracking-wider">Litros Filtrados</div>
+          <div class="text-xs text-gray-300 mt-1 uppercase tracking-wider font-semibold">Litros Filtrados</div>
         </div>
-        <div>
+        <div class="p-4 rounded-2xl bg-slate-950/60 backdrop-blur-md border border-white/10">
           <div class="text-3xl md:text-4xl font-black text-amber-400">100%</div>
-          <div class="text-xs md:text-sm text-gray-300 mt-1 uppercase tracking-wider">Preservación Varietal</div>
+          <div class="text-xs text-gray-300 mt-1 uppercase tracking-wider font-semibold">Preservación Varietal</div>
         </div>
-        <div>
+        <div class="p-4 rounded-2xl bg-slate-950/60 backdrop-blur-md border border-white/10">
           <div class="text-3xl md:text-4xl font-black text-amber-400">Della Toffola</div>
-          <div class="text-xs md:text-sm text-gray-300 mt-1 uppercase tracking-wider">Tecnología Líder</div>
+          <div class="text-xs text-gray-300 mt-1 uppercase tracking-wider font-semibold">Tecnología Líder OMNIA</div>
         </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-black text-amber-400">In Situ</div>
-          <div class="text-xs md:text-sm text-gray-300 mt-1 uppercase tracking-wider">Servicio Móvil Directo</div>
+        <div class="p-4 rounded-2xl bg-slate-950/60 backdrop-blur-md border border-white/10">
+          <div class="text-3xl md:text-4xl font-black text-amber-400">In-Situ 24/7</div>
+          <div class="text-xs text-gray-300 mt-1 uppercase tracking-wider font-semibold">Unidades Móviles Mendoza</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN COMPARATIVA: TANGENCIAL VS TIERRA DIATOMEA -->
+  <section id="comparativa" class="py-24 px-4 bg-slate-900 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Por qué elegir Filtración Tangencial</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Tangencial vs. Tierras Diatomeas</h2>
+        <p class="text-gray-400 mt-4 text-base md:text-lg max-w-2xl mx-auto">
+          Comparativa técnica de eficiencia, sustentabilidad y preservación de vino en bodega.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <!-- Tarjeta Tangencial (Ventaja Proservice) -->
+        <div class="bg-slate-950 border-2 border-amber-500/50 rounded-3xl p-8 shadow-2xl relative flex flex-col justify-between">
+          <div class="absolute -top-4 right-8 bg-amber-500 text-slate-950 text-xs font-black uppercase px-4 py-1 rounded-full shadow-lg">
+            Tecnología Proservice
+          </div>
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/40">
+                <i class="fas fa-circle-check"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-extrabold text-white">Filtración Tangencial Cerámica</h3>
+                <p class="text-xs text-amber-400 font-semibold">Innovación enológica in-situ</p>
+              </div>
+            </div>
+
+            <ul class="space-y-4 text-sm text-gray-200">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Cero Mermas por Absorción:</strong> Recuperación volumétrica superior al 99.2% sin retención de líquido en torta de tierra.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Integridad Sensorial Intacta:</strong> Sin alteración del perfil organoléptico, aroma, estructura tánica ni color.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Ecológico y Sustentable:</strong> Sin generación de residuos peligrosos ni manejo de diatomeas volátiles.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Clarificación en 1 Solo Paso:</strong> Logra niveles de turbidez &lt; 0.5 NTU directamente para fraccionado o guarda.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-amber-400/90 font-medium flex items-center justify-between">
+            <span> Eficiencia Volumétrica: ~99.5%</span>
+            <span class="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30">Recomendado enológicos</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta Tierras Diatomeas (Tradicional) -->
+        <div class="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 shadow-xl flex flex-col justify-between opacity-80 hover:opacity-100">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center text-2xl border border-red-500/40">
+                <i class="fas fa-circle-xmark"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-extrabold text-slate-300">Filtro de Tierra Tradicional</h3>
+                <p class="text-xs text-red-400 font-semibold">Método convencional con diatomeas</p>
+              </div>
+            </div>
+
+            <ul class="space-y-4 text-sm text-slate-400">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-xmark text-red-400 mt-1"></i>
+                <span><strong>Mermas Significativas:</strong> Pérdida de litros atrapados en la torta de tierra descartada (hasta un 3-5%).</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-xmark text-red-400 mt-1"></i>
+                <span><strong>Riesgo de Despojamiento:</strong> Posible pérdida sutil de componentes aromáticos y polifenoles.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-xmark text-red-400 mt-1"></i>
+                <span><strong>Gestión Ambiental Compleja:</strong> Acumulación de barro de diatomea considerado desecho industrial molesto.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-xmark text-red-400 mt-1"></i>
+                <span><strong>Intensivo en Mano de Obra:</strong> Requiere preparación continua de precapa y limpieza compleja.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500 font-medium flex items-center justify-between">
+            <span> Eficiencia Volumétrica: ~95.0%</span>
+            <span class="bg-red-500/10 text-red-400 px-3 py-1 rounded-full border border-red-500/30">Mayor costo por merma</span>
+          </div>
         </div>
       </div>
     </div>
@@ -163,45 +317,45 @@
   <!-- SECCIÓN 2: TECNOLOGÍA Y EQUIPAMIENTO -->
   <section id="tecnologia" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://i.ibb.co/KcG0NrGx/Captura-de-pantalla-2026-08-06-203503.png');">
     <div class="max-w-7xl mx-auto content-over-blur">
-      <div class="text-center mb-16" data-aos="fade-up">
+      <div class="text-center mb-16">
         <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Ingeniería de Vanguardia</span>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4 drop-shadow">Tecnología Tangencial Sin Diatomeas</h3>
-        <p class="text-gray-300 mt-4 text-base md:text-lg max-w-2xl mx-auto">
-          Eliminamos el uso de tierras filtrantes tradicionales. Nuestros equipos con membranas cerámicas de última generación garantizan máxima limpidez y sustentabilidad.
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 drop-shadow">Membranas Cerámicas Inalterables</h2>
+        <p class="text-slate-200 mt-4 text-base md:text-lg max-w-2xl mx-auto">
+          Cero diatomeas, máxima limpidez y retención milimétrica. Nuestro proceso respeta rigurosamente el equilibrio químico de tu vino.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Tarjeta 1 -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl transition-transform hover:-translate-y-2 glow-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl">
+          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
             <i class="fas fa-microchip"></i>
           </div>
-          <h4 class="text-2xl font-bold mb-3 text-white">Membranas Cerámicas</h4>
+          <h3 class="text-2xl font-bold mb-3 text-white">Membranas Cerámicas</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Porosidad calibrada con absoluta precisión milimétrica. Retención perfecta de sólidos y microorganismos sin alterar el perfil fenólico ni los aromas primarios.
+            Porosidad calibrada con absoluta precisión (0.2 µm - 0.8 µm). Retención perfecta de levaduras, bacterias y sólidos en suspensión sin alterar el perfil fenólico ni los aromas primarios.
           </p>
         </div>
 
         <!-- Tarjeta 2 -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl transition-transform hover:-translate-y-2 glow-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl">
+          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
             <i class="fas fa-truck-fast"></i>
           </div>
-          <h4 class="text-2xl font-bold mb-3 text-white">Unidad Móvil Autónoma</h4>
+          <h3 class="text-2xl font-bold mb-3 text-white">Unidad Móvil Autónoma</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Llegamos directo a tu establecimiento con equipamiento autónomo completo. Instalación rápida, segura y lista para operar bajo strictly protocolos sanitarios.
+            Llegamos directo a tu bodega con equipamiento autónomo completo. Instalación rápida, segura y lista para operar bajo estrictos protocolos sanitarios in-situ.
           </p>
         </div>
 
         <!-- Tarjeta 3 -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl transition-transform hover:-translate-y-2 glow-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl">
+          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
             <i class="fas fa-seedling"></i>
           </div>
-          <h4 class="text-2xl font-bold mb-3 text-white">Cero Residuos Tóxicos</h4>
+          <h3 class="text-2xl font-bold mb-3 text-white">Sustentabilidad Total</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Eliminación total del impacto ambiental de las tierras de diatomeas. Mayor rendimiento volumétrico del vino y menor merma operativa en bodega.
+            Eliminación total del impacto ambiental de las tierras de diatomeas. Mayor rendimiento volumétrico del vino, sin residuos sólidos contaminantes y menor consumo de agua.
           </p>
         </div>
       </div>
@@ -210,60 +364,157 @@
 
   <!-- SECCIÓN: EQUIPAMIENTO DELLA TOFFOLA -->
   <section id="equipamiento" class="bg-slate-950 py-28 px-4 relative overflow-hidden">
-    <div class="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 bg-wine-500/10 rounded-full blur-3xl pointer-events-none"></div>
     
     <div class="max-w-7xl mx-auto relative z-10">
-      <div class="text-center mb-16" data-aos="fade-up">
+      <div class="text-center mb-16">
         <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Alianza Tecnológica</span>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Unidades Della Toffola OMNIA</h3>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Unidades Della Toffola OMNIA</h2>
         <p class="text-gray-400 mt-4 text-base md:text-lg max-w-2xl mx-auto">
-          Operamos exclusivamente con equipos italianos de élite, reconocidos mundialmente por su delicadeza en el trato del vino y su eficiencia impecable.
+          Operamos exclusivamente con equipos italianos de élite mundial, reconocidos por su delicadeza en el trato del vino y su eficiencia impecable.
         </p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <!-- Imagen del Equipo -->
-        <div class="relative group rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50" data-aos="fade-right">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
-          <img src="https://i.ibb.co/mCbmv55S/697134065-122101679523309708-3328251210397430394-n.jpg" alt="Maquinaria Enológica" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-          <div class="absolute bottom-6 left-6 z-20">
-            <div class="bg-amber-500 text-slate-950 text-xs font-black uppercase px-3 py-1 rounded inline-block mb-2 shadow-lg">Serie OMNIA</div>
-            <h4 class="text-2xl font-bold text-white drop-shadow-md">Filtro Tangencial Inteligente</h4>
+        <div class="relative group rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent z-10"></div>
+          <img src="https://i.ibb.co/mCbmv55S/697134065-122101679523309708-3328251210397430394-n.jpg" 
+               alt="Equipo de Filtración Tangencial Della Toffola Proservice S.A." 
+               class="w-full h-[520px] object-cover opacity-90">
+          <div class="absolute bottom-6 left-6 right-6 z-20">
+            <div class="bg-amber-500 text-slate-950 text-xs font-black uppercase px-3 py-1 rounded-md inline-block mb-2 shadow-lg">Serie OMNIA Italia</div>
+            <h3 class="text-2xl font-bold text-white drop-shadow-md">Filtro Tangencial Inteligente in-situ</h3>
+            <p class="text-xs text-gray-300 mt-1">Supervisión técnica directa por especialistas enológicos de Proservice S.A.</p>
           </div>
         </div>
 
         <!-- Especificaciones -->
-        <div class="space-y-6" data-aos="fade-left">
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-amber-500/50 transition-colors">
-            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/50">
+            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner border border-slate-700">
               <i class="fas fa-layer-group"></i>
             </div>
             <div>
-              <h5 class="text-lg font-bold text-white mb-1">Membranas Cerámicas de Alta Densidad</h5>
-              <p class="text-sm text-gray-400 leading-relaxed">Resistencia extrema y calibración nanométrica. Permiten ciclos de filtración prolongados sin colmatación prematura ni degradación del poro.</p>
+              <h3 class="text-lg font-bold text-white mb-1">Membranas Cerámicas de Alta Densidad</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">Resistencia química/térmica extrema y calibración nanométrica. Permiten ciclos de filtración prolongados sin colmatación prematura ni alteración del poro.</p>
             </div>
           </div>
           
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-amber-500/50 transition-colors">
-            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner">
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/50">
+            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner border border-slate-700">
               <i class="fas fa-robot"></i>
             </div>
             <div>
-              <h5 class="text-lg font-bold text-white mb-1">Control Automatizado PLC</h5>
-              <p class="text-sm text-gray-400 leading-relaxed">Gestión inteligente de la Presión Transmembrana (PTM). El equipo se adapta en tiempo real a las condiciones de turbidez del vino.</p>
+              <h3 class="text-lg font-bold text-white mb-1">Control Automatizado por PLC</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">Gestión inteligente de la Presión Transmembrana (PTM). El equipo autorregula el caudal en tiempo real adaptándose a la carga de turbidez del lote.</p>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-amber-500/50 transition-colors">
-            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner">
-              <i class="fas fa-recycle"></i>
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/50">
+            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-amber-400 text-xl flex-shrink-0 shadow-inner border border-slate-700">
+              <i class="fas fa-arrows-rotate"></i>
             </div>
             <div>
-              <h5 class="text-lg font-bold text-white mb-1">Backwash y Autolimpieza CIP</h5>
-              <p class="text-sm text-gray-400 leading-relaxed">Sistemas de retrolavado integrados que garantizan un flujo constante y rutinas de esterilización que aseguran inocuidad absoluta.</p>
+              <h3 class="text-lg font-bold text-white mb-1">Backwash y Autolimpieza CIP Estéril</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">Sistemas de retrolavado pulsante continuo que mantienen limpio el medio filtrante, acompañados de sanitización CIP para máxima inocuidad microbiológica.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: CALCULADORA INTERACTIVA Y SIMULADOR ENOLÓGICO CON GRÁFICO -->
+  <section id="calculadora" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://images.unsplash.com/photo-1568222505315-728dd12872bc?q=80&w=1920&auto=format&fit=crop');">
+    <div class="max-w-6xl mx-auto content-over-blur">
+      <div class="text-center mb-12">
+        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Simulador Enológico In-Situ</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Simulador de Rendimiento y Curva de Clarificación</h2>
+        <p class="text-slate-200 mt-2 text-sm md:text-base max-w-2xl mx-auto">
+          Ingresa el volumen y tipo de vino de tu lote para obtener un análisis técnico en tiempo real del tiempo estimado, volumen útil recuperado y gráfico NTU.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/95 backdrop-blur-2xl p-6 md:p-10 rounded-3xl border border-slate-700 shadow-2xl">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Controles de entrada (5 Cols) -->
+          <div class="lg:col-span-5 space-y-5">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+              <i class="fas fa-sliders text-amber-400"></i> Parámetros de tu Lote
+            </h3>
+
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-gray-300 mb-1">
+                <label for="inputLitros">Volumen a Filtrar (Litros)</label>
+                <span id="labelLitros" class="text-amber-400 font-mono font-bold">25.000 Lts</span>
+              </div>
+              <input type="range" id="inputLitros" value="25000" min="2000" max="300000" step="1000"
+                     class="w-full accent-amber-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
+                     oninput="actualizarSimulador()">
+              <div class="flex justify-between text-[10px] text-gray-500 font-mono mt-1">
+                <span>2.000 L</span>
+                <span>150.000 L</span>
+                <span>300.000 L</span>
+              </div>
+            </div>
+
+            <div>
+              <label for="selectTipo" class="block text-xs font-semibold text-gray-300 mb-1.5">Categoría / Estado del Vino</label>
+              <select id="selectTipo" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs md:text-sm focus:outline-none focus:border-amber-500"
+                      onchange="actualizarSimulador()">
+                <option value="1.0">Vino Blanco / Rosado Clarificado (NTU ~25)</option>
+                <option value="1.25" selected>Vino Tinto Joven / Varietal (NTU ~60)</option>
+                <option value="1.5">Vino Tinto Guarda / Estructurado (NTU ~120)</option>
+                <option value="1.8">Vino de Final de Prensa / Alta Turbidez (NTU ~250+)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="selectNTUDeseado" class="block text-xs font-semibold text-gray-300 mb-1.5">Objetivo de Claridad (Limpidez Final)</label>
+              <select id="selectNTUDeseado" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs md:text-sm focus:outline-none focus:border-amber-500"
+                      onchange="actualizarSimulador()">
+                <option value="0.3">Brillo Espejo Fraccionado (&lt; 0.5 NTU)</option>
+                <option value="0.8">Estabilización Pre-Guarda (~0.8 NTU)</option>
+                <option value="1.5">Desbastado Inicial (~1.5 NTU)</option>
+              </select>
+            </div>
+
+            <!-- Resumen numérico rápido -->
+            <div class="grid grid-cols-2 gap-3 pt-3">
+              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Tiempo Proceso</span>
+                <span id="resTiempo" class="text-xl font-black text-amber-400 font-mono">~ 6.2 hrs</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Recuperación</span>
+                <span id="resRecuperacion" class="text-xl font-black text-emerald-400 font-mono">99.4%</span>
+              </div>
+            </div>
+
+            <button onclick="solicitarDesdeCalculadora()" 
+               class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-extrabold py-3.5 px-6 rounded-xl shadow-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+              <i class="fab fa-whatsapp text-lg"></i> Solicitar Reserva con estos Datos
+            </button>
+          </div>
+
+          <!-- Gráfico Chart.js interactivo (7 Cols) -->
+          <div class="lg:col-span-7 bg-slate-950/80 p-5 rounded-2xl border border-slate-800 relative flex flex-col justify-between">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Curva de Reducción de Turbidez (NTU)</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Modelo Della Toffola</span>
+            </div>
+            <div class="w-full h-64 md:h-72">
+              <canvas id="chartClarificacion"></canvas>
+            </div>
+            <div class="mt-3 text-[11px] text-gray-400 flex justify-between border-t border-slate-800/80 pt-2">
+              <span><i class="fas fa-shield-halved text-emerald-400"></i> Sin Pérdida de Estructura</span>
+              <span><i class="fas fa-droplet text-amber-400"></i> Retención Cero de Aroma</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -272,87 +523,102 @@
   <!-- SECCIÓN 4: PROCESO PASO A PASO -->
   <section id="proceso" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://images.unsplash.com/photo-1528823872057-9c018a7a7553?q=80&w=1920&auto=format&fit=crop');">
     <div class="max-w-7xl mx-auto content-over-blur">
-      <div class="text-center mb-16" data-aos="fade-up">
+      <div class="text-center mb-16">
         <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Metodología de Trabajo</span>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4">¿Cómo trabajamos en tu Bodega?</h3>
-        <p class="text-gray-300 mt-3 text-base">Un proceso riguroso diseñado para enólogos exigentes.</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">¿Cómo trabajamos en tu Bodega?</h2>
+        <p class="text-slate-200 mt-3 text-base">Un proceso riguroso y transparente diseñado para enólogos exigentes.</p>
       </div>
 
       <div class="grid md:grid-cols-4 gap-6">
         <!-- Paso 1 -->
-        <div class="bg-slate-900/85 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-amber-500/30 text-5xl font-black absolute top-4 right-6">01</div>
-          <h4 class="text-xl font-bold text-white mb-3 mt-4">Análisis Inicial</h4>
-          <p class="text-gray-300 text-sm leading-relaxed">Evaluamos el estado del vino, nivel de turbidez y requerimientos específicos de filtración junto al enólogo responsable.</p>
+        <div class="bg-slate-900/90 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative group hover:border-amber-500/60">
+          <div class="text-amber-500/20 text-5xl font-black absolute top-4 right-6 group-hover:text-amber-500/40">01</div>
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center font-bold mb-4">
+            <i class="fas fa-vial"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Análisis Técnico</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Evaluación preliminar del lote, índice de colmatación (IC) y turbidez (NTU) coordinado con el laboratorio de bodega.</p>
         </div>
 
         <!-- Paso 2 -->
-        <div class="bg-slate-900/85 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-amber-500/30 text-5xl font-black absolute top-4 right-6">02</div>
-          <h4 class="text-xl font-bold text-white mb-3 mt-4">Arribo y Montaje</h4>
-          <p class="text-gray-300 text-sm leading-relaxed">Desplazamos nuestra unidad móvil a planta, realizando conexiones sanitarias estériles bajo strictly normas de inocuidad.</p>
+        <div class="bg-slate-900/90 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative group hover:border-amber-500/60">
+          <div class="text-amber-500/20 text-5xl font-black absolute top-4 right-6 group-hover:text-amber-500/40">02</div>
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center font-bold mb-4">
+            <i class="fas fa-truck-ramp-box"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Arribo y Sanitización</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Montaje de la unidad móvil autónoma en planta, verificación de presiones e inyección CIP de sanitización estéril.</p>
         </div>
 
         <!-- Paso 3 -->
-        <div class="bg-slate-900/85 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative" data-aos="fade-up" data-aos-delay="300">
-          <div class="text-amber-500/30 text-5xl font-black absolute top-4 right-6">03</div>
-          <h4 class="text-xl font-bold text-white mb-3 mt-4">Filtración Asistida</h4>
-          <p class="text-gray-300 text-sm leading-relaxed">Supervisión técnica permanente durante todo el ciclo de filtración tangencial con control riguroso de presiones y caudales.</p>
+        <div class="bg-slate-900/90 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative group hover:border-amber-500/60">
+          <div class="text-amber-500/20 text-5xl font-black absolute top-4 right-6 group-hover:text-amber-500/40">03</div>
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center font-bold mb-4">
+            <i class="fas fa-gauge-high"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Filtración Tangencial</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Operación asistida por nuestros técnicos especializados, monitoreando caudal, PTM y temperatura durante todo el lote.</p>
         </div>
 
         <!-- Paso 4 -->
-        <div class="bg-slate-900/85 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative" data-aos="fade-up" data-aos-delay="400">
-          <div class="text-amber-500/30 text-5xl font-black absolute top-4 right-6">04</div>
-          <h4 class="text-xl font-bold text-white mb-3 mt-4">Resultado y Brillo</h4>
-          <p class="text-gray-300 text-sm leading-relaxed">Vino límpido, brillante, con su perfil organoléptico intacto y listo para su posterior estabilización o embotellado.</p>
+        <div class="bg-slate-900/90 backdrop-blur-md p-8 rounded-2xl border border-slate-700/60 shadow-xl relative group hover:border-amber-500/60">
+          <div class="text-amber-500/20 text-5xl font-black absolute top-4 right-6 group-hover:text-amber-500/40">04</div>
+          <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center font-bold mb-4">
+            <i class="fas fa-wine-glass"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Brillo y Conformidad</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Vino perfectamente estable, de brillo cristalino e impecable organolépticamente, listo para fraccionado o estiba.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN 5: TESTIMONIOS Y CONFIANZA -->
+  <!-- SECCIÓN 5: TESTIMONIOS Y REVIEWS GOOGLE -->
   <section id="testimonios" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://i.ibb.co/NdghPF2F/AHRPTWl-GZzp-APs-Wzh0e-Yuwng29-GEXcct1-BW8cy-F9-Kc-Hj-O5db9-Y1wc-Ofk-V1jbx-Aiahl-OELJNLterx-Sz7g-NBSo-Pc.webp');">
     <div class="max-w-6xl mx-auto content-over-blur">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Reseñas en Google Maps</span>
-        <h3 class="text-3xl md:text-4xl font-extrabold text-white mt-4">La reseña de quienes confían en nosotros</h3>
+      <div class="text-center mb-16">
+        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Google Reviews &bull; Calificación 5.0 &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">La opinión de quienes nos eligen</h2>
+        <p class="text-slate-200 mt-2 text-sm md:text-base">Bodegas y enólogos de Mendoza confían en nuestro compromiso y presencia in-situ.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Testimonio 1 -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-slate-700/80 shadow-2xl relative" data-aos="fade-right">
-          <div class="text-amber-400 text-2xl mb-4">
-            <i class="fas fa-quote-left"></i>
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl relative">
+          <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <span class="text-xs text-gray-400 ml-2 font-mono">Google Review</span>
           </div>
           <p class="text-gray-200 text-base italic leading-relaxed mb-6">
-            “Mi experiencia con Adry y Carlos fue que offered muy buen servicio, excelente asistencia permanente. Muy buen servicio a Finca Don Carlos Saludos.”
+            “Mi experiencia con Adry y Carlos fue que ofrecieron muy buen servicio, excelente asistencia permanente. Muy buen servicio a Finca Don Carlos. Saludos.”
           </p>
           <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center font-bold text-amber-400 border border-amber-500/40">
-              J
+            <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center font-bold text-amber-400 border border-amber-500/40 text-lg">
+              j
             </div>
             <div>
-              <h5 class="font-bold text-white">Jesus C.</h5>
-              <p class="text-xs text-amber-400">20+ Opiniones, Local Guide Nivel 4</p>
+              <h3 class="font-bold text-white text-base">Jesus C.</h3>
+              <p class="text-xs text-amber-400">Local Guide Nivel 4 &bull; Finca Don Carlos</p>
             </div>
           </div>
         </div>
 
         <!-- Testimonio 2 -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-slate-700/80 shadow-2xl relative" data-aos="fade-left">
-          <div class="text-amber-400 text-2xl mb-4">
-            <i class="fas fa-quote-left"></i>
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/80 shadow-2xl relative">
+          <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <span class="text-xs text-gray-400 ml-2 font-mono">Google Review</span>
           </div>
           <p class="text-gray-200 text-base italic leading-relaxed mb-6">
-            “Muy buen servicio de filtración, trabajamos con ellos hace 5 años y siempre han respondido de manera excelente.”
+            “Muy buen servicio de filtración, trabajamos con ellos hace 5 años y siempre han respondido de manera excelente en tiempo y forma.”
           </p>
           <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center font-bold text-amber-400 border border-amber-500/40">
-              🧑
+            <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center font-bold text-amber-400 border border-amber-500/40 text-lg">
+              🧑🏼
             </div>
             <div>
-              <h5 class="font-bold text-white">Mario C. </h5>
-              <p class="text-xs text-amber-400">+30 opiniones — Local Guide Nivel 6</p>
+              <h3 class="font-bold text-white text-base">Mario C.</h3>
+              <p class="text-xs text-amber-400">Local Guide Nivel 6 &bull; Enólogo Regional</p>
             </div>
           </div>
         </div>
@@ -360,117 +626,107 @@
     </div>
   </section>
 
-  <!-- SECCIÓN: CALCULADORA INTERACTIVA DE FILTRACIÓN -->
-  <section id="calculadora" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://images.unsplash.com/photo-1568222505315-728dd12872bc?q=80&w=1920&auto=format&fit=crop');">
-    <div class="max-w-4xl mx-auto content-over-blur">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Simulador Enológico</span>
-        <h3 class="text-3xl md:text-4xl font-extrabold text-white mt-4">Calcula el Rendimiento de tu Lote</h3>
-        <p class="text-gray-300 mt-2 text-sm md:text-base">Estima el tiempo estimado y el volumen de recuperación optimizado con nuestro servicio tangencial.</p>
+  <!-- SECCIÓN FAQ PREGUNTAS FRECUENTES -->
+  <section class="py-24 px-4 bg-slate-950 border-t border-slate-900">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Resolución de Dudas</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-4">Preguntas Frecuentes Enológicas</h2>
       </div>
 
-      <div class="bg-slate-900/90 backdrop-blur-2xl p-8 md:p-12 rounded-3xl border border-slate-700 shadow-2xl" data-aos="zoom-in">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Controles -->
-          <div class="space-y-6">
-            <div>
-              <label class="block text-sm font-semibold text-gray-200 mb-2">Volumen de Vino a Filtrar (Litros)</label>
-              <input type="number" id="inputLitros" value="15000" step="1000" min="1000" max="500000" 
-                     class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 font-mono text-lg"
-                     oninput="calcularFiltracion()">
-            </div>
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <details class="group bg-slate-900 rounded-2xl border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base">
+            <span>¿La filtración tangencial afecta el color o la estructura del vino tinto?</span>
+            <span class="text-amber-400"><i class="fas fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-sm text-gray-300 mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+            No. Las membranas cerámicas Della Toffola operan bajo presiones transmembrana (PTM) muy suaves, reteniendo partículas coloidales en suspensión de forma puramente física sin stripping molecular de antocianos, polifenoles ni taninos.
+          </p>
+        </details>
 
-            <div>
-              <label class="block text-sm font-semibold text-gray-200 mb-2">Tipo de Vino / Estado del Líquido</label>
-              <select id="selectTipo" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm"
-                      onchange="calcularFiltracion()">
-                <option value="1.2">Vino Tinto Joven / Estructurado (Turbiedad Media)</option>
-                <option value="1.0" selected>Vino Blanco / Rosado (Flujo Óptimo)</option>
-                <option value="1.5">Vino con Envero / Post-Fermentación (Alta Carga)</option>
-              </select>
-            </div>
+        <!-- FAQ 2 -->
+        <details class="group bg-slate-900 rounded-2xl border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base">
+            <span>¿Cuál es el volumen mínimo para solicitar la unidad móvil en bodega?</span>
+            <span class="text-amber-400"><i class="fas fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-sm text-gray-300 mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+            Atendemos desde lotes de 2.000 litros en adelante. Para volúmenes menores o micro-vinificaciones, consúltanos para coordinar agrupamiento de fechas en la misma zona geográfica.
+          </p>
+        </details>
 
-            <div>
-              <label class="block text-sm font-semibold text-gray-200 mb-2">Urgencia / Requerimiento de Fecha</label>
-              <select id="selectUrgencia" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm">
-                <option value="normal">Programación Estándar de Vendimia</option>
-                <option value="inmediata">Prioridad Operativa Inmediata (24/48hs)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Resultados simulados -->
-          <div class="bg-slate-950/80 border border-amber-500/30 p-8 rounded-2xl text-center flex flex-col justify-center shadow-inner">
-            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold mb-2">Estimación Técnica Proservice</span>
-            <div class="my-4">
-              <div class="text-gray-400 text-xs">Tiempo Estimado de Proceso:</div>
-              <div id="resTiempo" class="text-3xl md:text-4xl font-black text-white mt-1">~ 4.5 Horas</div>
-            </div>
-            <div class="my-2 pt-4 border-t border-slate-800">
-              <div class="text-gray-400 text-xs">Recuperación Volumétrica Estimada:</div>
-              <div id="resRecuperacion" class="text-2xl font-bold text-amber-400 mt-1">99.2% Líquido Útil</div>
-            </div>
-            
-            <button onclick="solicitarDesdeCalculadora()" 
-               class="mt-6 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-6 rounded-xl transition shadow-lg text-sm block">
-              Coordinar con este volumen &rarr;
-            </button>
-          </div>
-        </div>
+        <!-- FAQ 3 -->
+        <details class="group bg-slate-900 rounded-2xl border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base">
+            <span>¿Qué requerimientos energéticos e hídricos se necesitan en bodega?</span>
+            <span class="text-amber-400"><i class="fas fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-sm text-gray-300 mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+            Nuestras unidades están equipadas con conexiones eléctricas estandarizadas tripartitas y sistemas de sanitización autónomos. Antes de la visita, enviamos una check-list simple para asegurar una puesta en marcha inmediata.
+          </p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: UBICACIÓN & GOOGLE MAPS -->
+  <!-- SECCIÓN UBICACIÓN Y MAPA CON PLACE ID Y DATOS REALES DE LUJÁN DE CUYO -->
   <section id="ubicacion" class="bg-slate-950 py-24 px-4 border-t border-slate-900">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
+      <div class="text-center mb-12">
         <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Nuestra Base de Operaciones</span>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Ubicación & Cobertura Regional</h3>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Ubicación & Cobertura Mendoza</h2>
         <p class="text-gray-400 mt-3 text-base max-w-2xl mx-auto">
-          Ubicados estratégicamente en la provincia de Mendoza para prestar servicios móviles inmediatos a todas las bodegas de la región.
+          Ubicados estratégicamente en Luján de Cuyo, Mendoza, brindamos servicio in-situ inmediato en toda la provincia.
         </p>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-        <!-- Tarjeta de Info de Ubicación -->
-        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between" data-aos="fade-right">
+        <!-- Tarjeta de Info de Ubicación con Place ID datos reales -->
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between shadow-2xl">
           <div>
             <div class="flex items-center gap-3 text-amber-400 mb-6">
               <i class="fas fa-map-location-dot text-3xl"></i>
-              <h4 class="text-xl font-bold text-white">Sede Mendoza</h4>
+              <div>
+                <h3 class="text-xl font-bold text-white">Luján de Cuyo, Mendoza</h3>
+                <span class="text-xs text-amber-400">Barrío Milcayac, M5507</span>
+              </div>
             </div>
+            
             <p class="text-gray-300 text-sm leading-relaxed mb-6">
-              Brindamos atención técnica in-situ desplazando nuestras unidades autónomas a Luján de Cuyo, Maipú, Valle de Uco, San Rafael y zonas productivas aledañas.
+              Desplazamos nuestras unidades móviles autónomas a Luján de Cuyo, Valle de Uco (Tupungato, Tunuyán, San Carlos), Maipú, San Rafael y zonas vitivinícolas aledañas.
             </p>
 
             <ul class="space-y-4 text-sm text-gray-300">
               <li class="flex items-center gap-3">
-                <i class="fas fa-check-circle text-emerald-400"></i> Servicio Móvil en Bodega
+                <i class="fas fa-check-circle text-emerald-400"></i> Servicio Móvil In-Situ en Planta
               </li>
               <li class="flex items-center gap-3">
-                <i class="fas fa-check-circle text-emerald-400"></i> Asistencia Técnica 24/7
+                <i class="fas fa-check-circle text-emerald-400"></i> Asistencia Técnica Enológica Directa
               </li>
               <li class="flex items-center gap-3">
-                <i class="fas fa-check-circle text-emerald-400"></i> Traslado Equipos Certificados
+                <i class="fas fa-phone text-amber-400"></i> <span class="font-mono">+54 261 625-3687</span>
               </li>
             </ul>
           </div>
 
-          <a href="https://maps.app.goo.gl/J8ooxufsrjkXUfUb7" target="_blank" 
-             class="mt-8 bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold py-3.5 px-6 rounded-xl border border-amber-500/30 text-center transition flex items-center justify-center gap-2 text-sm">
-            <i class="fas fa-arrow-up-right-from-square"></i> Abrir en Google Maps
-          </a>
+          <div class="mt-8 pt-6 border-t border-slate-800 space-y-3">
+            <a href="https://maps.google.com/?cid=1401287794239523079" target="_blank" rel="noopener noreferrer"
+               class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3.5 px-6 rounded-xl text-center flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+              <i class="fas fa-location-arrow"></i> Ver Ubicación Exacta en Google Maps
+            </a>
+          </div>
         </div>
 
-        <!-- Mapa Embebido de Google -->
-        <div class="lg:col-span-2 rounded-3xl overflow-hidden border border-slate-800 min-h-[350px] shadow-2xl" data-aos="fade-left">
+        <!-- Mapa Embebido de Google Maps -->
+        <div class="lg:col-span-2 rounded-3xl overflow-hidden border border-slate-800 min-h-[380px] shadow-2xl relative">
           <iframe 
-            title="Google Maps Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.665406085186!2d-68.85000000000002!3d-32.93000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU1JzE4LjAiUyA2OMKwNTEnMDAuMCJX!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" 
+            title="Ubicación Proservice S.A. Luján de Cuyo Mendoza"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.665406085186!2d-68.85000000000002!3d-32.93000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0f284f15e20f%3A0x13735f3d13bc1a77!2sFiltracion%20Tangencial%20Proservice%20s.a.!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" 
             width="100%" 
             height="100%" 
-            style="border:0; min-height: 380px;" 
+            style="border:0; min-height: 400px;" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
@@ -483,47 +739,44 @@
   <!-- SECCIÓN 6: CONTACTO Y ACCIÓN DIRECTA -->
   <section id="contacto" class="bg-blur-fixed py-28 px-4" style="background-image: url('https://i.ibb.co/XxwMztN6/unnamed-1.webp');">
     <div class="max-w-5xl mx-auto content-over-blur">
-      <div class="text-center mb-16" data-aos="fade-up">
+      <div class="text-center mb-16">
         <span class="text-amber-400 font-bold text-xs md:text-sm tracking-widest uppercase bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/30">Canales Directos</span>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Coordinemos en tu Bodega</h3>
-        <p class="text-gray-300 mt-3 text-base">Atención directa con especialistas técnicos y enólogos.</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Coordinemos Servicio en tu Bodega</h2>
+        <p class="text-slate-200 mt-3 text-base">Atención directa con especialistas técnicos y enólogos.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <!-- WhatsApp Card -->
         <div onclick="abrirModalWA('Sección Contacto')" 
-           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 transition-all duration-300 transform hover:-translate-y-2 text-center group block cursor-pointer"
-           data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 transition-all duration-300">
+           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 text-center group cursor-pointer">
+          <div class="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
             <i class="fab fa-whatsapp"></i>
           </div>
-          <h4 class="font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">WhatsApp Directo</h4>
-          <p class="text-gray-300 text-sm mt-2 font-mono">0261 625-3687</p>
-          <span class="inline-block mt-6 text-xs font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 py-2 px-4 rounded-xl">Iniciar Chat &rarr;</span>
+          <h3 class="font-bold text-xl text-white group-hover:text-emerald-400">WhatsApp Directo</h3>
+          <p class="text-gray-300 text-sm mt-2 font-mono font-bold">+54 261 625-3687</p>
+          <span class="inline-block mt-6 text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 py-2 px-4 rounded-xl">Iniciar Chat Inmediato &rarr;</span>
         </div>
 
         <!-- Correo Electrónico Card -->
         <div onclick="copiarEmail('funesfiltracion@gmail.com')" 
-             class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 transition-all duration-300 transform hover:-translate-y-2 text-center group cursor-pointer"
-             data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 transition-all duration-300">
+             class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 text-center group cursor-pointer">
+          <div class="w-16 h-16 bg-amber-500/20 border border-amber-500/40 text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
             <i class="fas fa-envelope"></i>
           </div>
-          <h4 class="font-bold text-xl text-white group-hover:text-amber-400 transition-colors">Correo Electrónico</h4>
+          <h3 class="font-bold text-xl text-white group-hover:text-amber-400">Correo Electrónico</h3>
           <p class="text-gray-300 text-sm mt-2 font-mono">funesfiltracion@gmail.com</p>
-          <span class="inline-block mt-6 text-xs font-semibold text-amber-400 uppercase tracking-widest bg-amber-500/10 py-2 px-4 rounded-xl">Copiar Email &rarr;</span>
+          <span class="inline-block mt-6 text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-500/10 py-2 px-4 rounded-xl">Copiar Email &rarr;</span>
         </div>
 
         <!-- Instagram Card -->
-        <a href="https://www.instagram.com/proservice.s.a" target="_blank" 
-           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 transition-all duration-300 transform hover:-translate-y-2 text-center group block"
-           data-aos="zoom-in" data-aos-delay="300">
-          <div class="w-16 h-16 bg-pink-500/20 border border-pink-500/40 text-pink-400 group-hover:bg-pink-600 group-hover:text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 transition-all duration-300">
+        <a href="https://www.instagram.com/proservice.s.a" target="_blank" rel="noopener noreferrer"
+           class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-slate-700/80 text-center group block">
+          <div class="w-16 h-16 bg-pink-500/20 border border-pink-500/40 text-pink-400 group-hover:bg-pink-600 group-hover:text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
             <i class="fab fa-instagram"></i>
           </div>
-          <h4 class="font-bold text-xl text-white group-hover:text-pink-400 transition-colors">Instagram</h4>
+          <h3 class="font-bold text-xl text-white group-hover:text-pink-400">Instagram</h3>
           <p class="text-gray-300 text-sm mt-2 font-mono">@proservice.s.a</p>
-          <span class="inline-block mt-6 text-xs font-semibold text-pink-400 uppercase tracking-widest bg-pink-500/10 py-2 px-4 rounded-xl">Ver Galería &rarr;</span>
+          <span class="inline-block mt-6 text-xs font-bold text-pink-400 uppercase tracking-widest bg-pink-500/10 py-2 px-4 rounded-xl">Ver Trabajos en Vivo &rarr;</span>
         </a>
       </div>
     </div>
@@ -532,13 +785,14 @@
   <!-- Footer -->
   <footer class="bg-slate-950 text-gray-400 py-12 text-center text-xs border-t border-slate-900 relative z-20">
     <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-2 text-amber-500 font-bold text-base">
+      <div class="flex items-center gap-2 text-amber-400 font-black text-base">
         <i class="fas fa-wine-glass-empty"></i> PROSERVICE S.A.
       </div>
-      <p>&copy; 2026 Proservice S.A. Filtración Tangencial de Vinos. Todos los derechos reservados.</p>
-      <div class="flex gap-6">
-        <a href="#inicio" class="hover:text-amber-400 transition">Privacidad</a>
-        <a href="#contacto" class="hover:text-amber-400 transition">Términos</a>
+      <p>&copy; 2026 Proservice S.A. Filtración Tangencial de Vinos. Luján de Cuyo, Mendoza, Argentina.</p>
+      <div class="flex gap-6 text-gray-500">
+        <a href="#inicio" class="hover:text-amber-400">Inicio</a>
+        <a href="#tecnologia" class="hover:text-amber-400">Tecnología</a>
+        <a href="#contacto" class="hover:text-amber-400">Contacto</a>
       </div>
     </div>
   </footer>
@@ -546,18 +800,18 @@
   <!-- ELEMENTOS FLOTANTES QoL (Volver arriba y WhatsApp Flotante) -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
     <!-- Botón Volver Arriba -->
-    <button id="btnScrollTop" onclick="scrollToTop()" class="hidden bg-slate-800 hover:bg-slate-700 text-amber-400 p-3.5 rounded-full shadow-2xl border border-slate-700 transition transform hover:scale-110">
+    <button id="btnScrollTop" onclick="scrollToTop()" aria-label="Volver arriba" class="hidden bg-slate-900 hover:bg-slate-800 text-amber-400 p-3.5 rounded-2xl shadow-2xl border border-slate-700">
       <i class="fas fa-arrow-up"></i>
     </button>
     
     <!-- Botón Flotante WhatsApp -->
-    <button onclick="abrirModalWA('Botón Flotante')" class="bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 flex items-center justify-center text-2xl shadow-emerald-950/50">
+    <button onclick="abrirModalWA('Botón Flotante')" aria-label="Abrir WhatsApp" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-center text-2xl shadow-emerald-950/60">
       <i class="fab fa-whatsapp"></i>
     </button>
   </div>
 
-  <!-- MODAL / POP-UP PREGUNTAS WHATSAPP CON SKIP (QoL) -->
-  <div id="modalWhatsApp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-opacity">
+  <!-- MODAL / POP-UP PREGUNTAS WHATSAPP CON SKIP -->
+  <div id="modalWhatsApp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-700 text-white w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-2xl relative">
       <!-- Botón cerrar modal -->
       <button onclick="cerrarModalWA()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
@@ -568,41 +822,40 @@
         <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-3 border border-emerald-500/30">
           <i class="fab fa-whatsapp"></i>
         </div>
-        <h3 class="text-2xl font-bold">Asesoramiento Personalizado</h3>
-        <p class="text-gray-400 text-xs md:text-sm mt-1">Responde brevemente para darte una respuesta exacta o salta directamente a WhatsApp.</p>
+        <h3 class="text-2xl font-bold">Asesoramiento Enológico</h3>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Completa los datos para personalizar tu solicitud o salta directamente a WhatsApp.</p>
       </div>
 
       <form id="formWhatsApp" onsubmit="enviarMensajeWA(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-gray-300 mb-1">Nombre / Bodega</label>
-          <input type="text" id="waNombre" placeholder="Ej: Juan Pérez / Bodega Don Carlos" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+          <label for="waNombre" class="block text-xs font-semibold text-gray-300 mb-1">Nombre / Bodega</label>
+          <input type="text" id="waNombre" placeholder="Ej: Enólogo Juan / Bodega Luján" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-gray-300 mb-1">Tipo de Vino</label>
-          <input type="text" id="waTipoVino" placeholder="Ej: Tinto Malbec, Blanco, Rosado..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+          <label for="waTipoVino" class="block text-xs font-semibold text-gray-300 mb-1">Varietal / Tipo de Vino</label>
+          <input type="text" id="waTipoVino" placeholder="Ej: Malbec Tinto, Sauvignon Blanc, Rosado..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">Volumen aprox. (Lts)</label>
-            <input type="text" id="waVolumen" placeholder="Ej: 20.000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+            <label for="waVolumen" class="block text-xs font-semibold text-gray-300 mb-1">Volumen aprox. (Lts)</label>
+            <input type="text" id="waVolumen" placeholder="Ej: 25.000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">Fecha Estimada</label>
-            <input type="text" id="waFecha" placeholder="Ej: Próxima semana / Urgente" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+            <label for="waFecha" class="block text-xs font-semibold text-gray-300 mb-1">Ubicación / Zona</label>
+            <input type="text" id="waFecha" placeholder="Ej: Valle de Uco / Maipú" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
           </div>
         </div>
 
-        <!-- Botones de Acción: Enviar Formulario o Botón SKIP -->
+        <!-- Botones de Acción -->
         <div class="pt-4 flex flex-col sm:flex-row gap-3">
-          <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
-            <i class="fab fa-whatsapp"></i> Enviar Datos e Iniciar
+          <button type="submit" class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp text-lg"></i> Enviar a WhatsApp
           </button>
           
-          <!-- Botón SKIP / SALTAR -->
-          <button type="button" onclick="saltarAWA()" class="bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold py-3 px-5 rounded-xl transition text-sm">
-            Skip / Omitir &rarr;
+          <button type="button" onclick="saltarAWA()" class="bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold py-3 px-5 rounded-xl text-sm">
+            Omitir e ir directo &rarr;
           </button>
         </div>
       </form>
@@ -610,10 +863,9 @@
   </div>
 
   <script>
-    // Inicializar AOS
-    AOS.init({
-      duration: 800,
-      once: true
+    document.addEventListener('DOMContentLoaded', function() {
+      inicializarGrafico();
+      actualizarSimulador();
     });
 
     // QoL: Menú hamburguesa desplegable
@@ -644,13 +896,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // LÓGICA DEL POP-UP MODAL DE WHATSAPP
+    // Modal WhatsApp Logic
     const modalWhatsApp = document.getElementById('modalWhatsApp');
     const numeroWhatsApp = "5492616253687";
-    let origenWhatsApp = "Web";
 
     function abrirModalWA(origen = '') {
-      origenWhatsApp = origen;
       modalWhatsApp.classList.remove('hidden');
     }
 
@@ -658,14 +908,12 @@
       modalWhatsApp.classList.add('hidden');
     }
 
-    // Acción para presionar el botón SKIP
     function saltarAWA() {
       cerrarModalWA();
-      const msg = encodeURIComponent(`Hola! Quisiera realizar una consulta sobre el servicio de filtración tangencial para mi bodega.`);
+      const msg = encodeURIComponent("Hola Proservice S.A., quisiera realizar una consulta técnica para un servicio de filtración tangencial en bodega.");
       window.open(`https://wa.me/${numeroWhatsApp}?text=${msg}`, '_blank');
     }
 
-    // Acción al enviar el formulario del Modal
     function enviarMensajeWA(e) {
       e.preventDefault();
       const nombre = document.getElementById('waNombre').value.trim();
@@ -673,67 +921,144 @@
       const volumen = document.getElementById('waVolumen').value.trim();
       const fecha = document.getElementById('waFecha').value.trim();
 
-      let texto = `Hola! Quisiera consultar disponibilidad de servicio de filtración tangencial.`;
+      let texto = `Hola Proservice S.A.! Quisiera consultar disponibilidad para servicio de filtración tangencial.`;
       
       if (nombre) texto += `\n\n📌 *Nombre / Bodega:* ${nombre}`;
-      if (tipoVino) texto += `\n🍷 *Tipo de Vino:* ${tipoVino}`;
+      if (tipoVino) texto += `\n🍷 *Tipo / Varietal:* ${tipoVino}`;
       if (volumen) texto += `\n📊 *Volumen aprox.:* ${volumen} Lts`;
-      if (fecha) texto += `\n📅 *Fecha estimada:* ${fecha}`;
+      if (fecha) texto += `\n📍 *Zona / Ubicación:* ${fecha}`;
 
       cerrarModalWA();
       const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
       window.open(url, '_blank');
     }
 
-    // Vinculación directa desde la Calculadora al Pop-Up
     function solicitarDesdeCalculadora() {
       const litros = document.getElementById('inputLitros').value;
       const selectTipo = document.getElementById('selectTipo');
       const tipoTexto = selectTipo.options[selectTipo.selectedIndex].text;
       
-      document.getElementById('waVolumen').value = litros;
+      document.getElementById('waVolumen').value = parseInt(litros).toLocaleString('es-AR');
       document.getElementById('waTipoVino').value = tipoTexto;
       
       abrirModalWA('Calculadora');
     }
 
-    // Simulador interactivo en tiempo real
-    function calcularFiltracion() {
-      const litros = parseFloat(document.getElementById('inputLitros').value) || 0;
-      const factorTipo = parseFloat(document.getElementById('selectTipo').value) || 1.0;
-      
-      const horasBase = (litros / 3500) * factorTipo;
-      const horasRedondeadas = Math.round(horasBase * 10) / 10;
-      
-      document.getElementById('resTiempo').innerText = `~ ${horasRedondeadas} Horas`;
-      
-      let recuperacion = "99.4% Líquido Útil";
-      if (factorTipo > 1.3) {
-        recuperacion = "98.9% Líquido Útil";
-      } else if (factorTipo < 1.1) {
-        recuperacion = "99.6% Líquido Útil";
-      }
-      document.getElementById('resRecuperacion').innerText = recuperacion;
-    }
+    // Chart.js - Simulador Enológico con Gráfico
+    let chartInstance = null;
 
-    // Copiar email con alerta estilizada
-    function copiarEmail(email) {
-      navigator.clipboard.writeText(email).then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Correo copiado!',
-          text: email + ' copiado al portapapeles exitosamente.',
-          timer: 2000,
-          showConfirmButton: false,
-          background: '#0f172a',
-          color: '#ffffff',
-          iconColor: '#f59e0b'
-        });
+    function inicializarGrafico() {
+      const ctx = document.getElementById('chartClarificacion').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['0h', '1h', '2h', '3h', '4h', 'Final'],
+          datasets: [{
+            label: 'Turbidez Vino (NTU)',
+            data: [120, 60, 25, 8, 1.2, 0.4],
+            borderColor: '#eab308',
+            backgroundColor: 'rgba(234, 179, 8, 0.15)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0,
+            pointBackgroundColor: '#eab308',
+            pointRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: {
+              labels: { color: '#94a3b8', font: { size: 11 } }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#94a3b8' }
+            },
+            y: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#94a3b8' },
+              title: { display: true, text: 'NTU', color: '#ca8a04' }
+            }
+          }
+        }
       });
     }
 
-    // Ejecutar cálculo inicial
-    calcularFiltracion();
+    function actualizarSimulador() {
+      const litros = parseFloat(document.getElementById('inputLitros').value) || 25000;
+      const factorTipo = parseFloat(document.getElementById('selectTipo').value) || 1.25;
+      const targetNTU = parseFloat(document.getElementById('selectNTUDeseado').value) || 0.4;
+      
+      document.getElementById('labelLitros').innerText = `${litros.toLocaleString('es-AR')} Lts`;
+
+      // Cálculo de horas según caudal promedio (~3,800 - 4,500 L/h)
+      const caudalEfectivo = 4200 / factorTipo;
+      const horas = (litros / caudalEfectivo);
+      const horasFormateadas = Math.round(horas * 10) / 10;
+      
+      document.getElementById('resTiempo').innerText = `~ ${horasFormateadas} hrs`;
+
+      // Recuperación estimada
+      let recuperacion = 99.4;
+      if (factorTipo > 1.4) recuperacion = 99.0;
+      if (factorTipo < 1.1) recuperacion = 99.6;
+      document.getElementById('resRecuperacion').innerText = `${recuperacion}%`;
+
+      // Actualizar datos del gráfico
+      if (chartInstance) {
+        let startNTU = 60;
+        if (factorTipo >= 1.8) startNTU = 250;
+        else if (factorTipo >= 1.5) startNTU = 120;
+        else if (factorTipo <= 1.0) startNTU = 25;
+
+        chartInstance.data.datasets[0].data = [
+          startNTU,
+          Math.round(startNTU * 0.45),
+          Math.round(startNTU * 0.18),
+          Math.round(startNTU * 0.05),
+          Math.round(startNTU * 0.015),
+          targetNTU
+        ];
+        chartInstance.update('none');
+      }
+    }
+
+    // Copiar email con fallback seguro
+    function copiarEmail(email) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(() => mostrarAlertaEmail(email));
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          mostrarAlertaEmail(email);
+        } catch (err) {
+          console.error('Error al copiar', err);
+        }
+        document.body.removeChild(textArea);
+      }
+    }
+
+    function mostrarAlertaEmail(email) {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Correo copiado!',
+        text: email + ' copiado al portapapeles exitosamente.',
+        timer: 2200,
+        showConfirmButton: false,
+        background: '#090d16',
+        color: '#ffffff',
+        iconColor: '#eab308'
+      });
+    }
   </script>
 </body>
 </html>
